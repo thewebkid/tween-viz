@@ -257,10 +257,7 @@ export class Tween {
     }
 
     const b = this.from;
-    if (this.zoom){
-      //debugger
-      return b * Math.pow(this.zoomMult, p * 100);
-    }
+    
     const c = this.delta;
     const pNow = this.tweener(p);
     let v = b + (pNow * c);
