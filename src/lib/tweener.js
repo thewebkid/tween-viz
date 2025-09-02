@@ -256,8 +256,7 @@ export class Tween {
       return this.finishVal;
     }
 
-    const b = this.from;
-    
+    const b = this.from;    
     const c = this.delta;
     const pNow = this.tweener(p);
     let v = b + (pNow * c);
