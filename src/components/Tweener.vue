@@ -60,21 +60,23 @@
             <div class="d-flex">
               <div>
                 <label>start</label>
-                <b-form-input
+                <b-form-input v-if="!tween.isColor"
                     type="number" size="sm"
                     v-model.number="tween.start"
                     :min="tween.min" :max="tween.end != null ? tween.end : tween.max"
                     :step="tween.prop === 'opacity' ? 0.01 : 1"
                     @change="computeCss(tween)" />
+                <input type="color" v-else :value="tween.min.hex" @input="tween.min = createColor($event); computeCss(tween)" />
               </div>
               <div class="ms-2">
                 <label>end</label>
-                <b-form-input
+                <b-form-input v-if="!tween.isColor"
                     type="number" size="sm"
                     v-model.number="tween.end"
                     :min="tween.start != null ? tween.start : tween.min" :max="tween.max"
                     :step="tween.prop === 'opacity' ? 0.01 : 1" @change="computeCss(tween)"
                 />
+                <input type="color" v-else :value="tween.max.hex" @input="tween.max = createColor($event); computeCss(tween)" />
               </div>
             </div>
           </div>
@@ -93,6 +95,7 @@
 import {tweenables} from '@/lib/tweenable.js';
 import {BDropdown, BDropdownItem, BFormCheckbox, BFormInput} from 'bootstrap-vue-next';
 import {transitionNames} from '@/lib/tweener.js';
+import {Color} from 'modern-color';
 
 export default {
   name: "tween-any",
@@ -122,6 +125,9 @@ export default {
     }
   },
   methods: {
+    createColor(e){
+      return Color.parse(e.target.value)
+    },
     toggleInclude(tween, checked) {
       tween.include = checked;
     },
@@ -230,6 +236,19 @@ export default {
 }
 em{
   color:#555;
+}
+input[type="color"]{
+  display:block;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 0;
+  margin: 0 60px 0 0;
+  cursor: pointer;
+  &:focus{
+    outline: none;
+  }
 }
 .canvas{
   height:1000px;

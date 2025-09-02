@@ -1,6 +1,6 @@
 
 
-const isNum = v => typeof v === 'number';
+export const isNum = v => typeof v === 'number';
 const linear = (p) => p;
 
 export const transitions = {
