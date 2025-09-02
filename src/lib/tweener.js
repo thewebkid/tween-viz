@@ -230,6 +230,9 @@ export class Tween {
     this.to = to;
     this.duration = duration;
     this.start = start;
+    if (isNum(transition)){
+      transition = transitionNames[transition];
+    }
     this.transition = transition;
     this.easingName = ['in', 'out', 'in-out'][easing];
     this.easing = easing;
@@ -256,7 +259,7 @@ export class Tween {
       return this.finishVal;
     }
 
-    const b = this.from;    
+    const b = this.from;
     const c = this.delta;
     const pNow = this.tweener(p);
     let v = b + (pNow * c);

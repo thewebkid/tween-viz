@@ -6,8 +6,8 @@ const transitionNames = Object.keys(transitions);
 const hueIncr = 360 / transitionNames.length;
 const colors = ref(
   transitionNames.map((t,i) => [
-    Color.parse({h: i * hueIncr, s: 100, l: 50}).lighten(0.25),  
-    Color.parse({h: i * hueIncr, s: 100, l: 50}),    
+    Color.parse({h: i * hueIncr, s: 100, l: 50}).lighten(0.25),
+    Color.parse({h: i * hueIncr, s: 100, l: 50}),
     Color.parse({h: i * hueIncr, s: 100, l: 50}).darken(0.25),
   ])
 );
@@ -67,10 +67,12 @@ const animateGraph = (transitionIndex, easingIndex, event) => {
   <router-view />
 </template>
 
-<style>
+<style lang="scss">
+@import "bootstrap/scss/bootstrap";
 body {
   margin: 0;
   padding: 0;
+  background-color: #000055;
 }
 
 #app {
