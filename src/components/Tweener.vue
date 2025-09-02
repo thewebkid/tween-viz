@@ -1,6 +1,16 @@
 <template>
   <div>tweens</div>
-  <div class="d-flex"></div>
+  <div class="d-flex">
+    <div>
+      <div v-for="(tween, i) in tweenable" :key="tween.prop">
+
+          <div>{{tween.label}}</div>
+          <div class="d-flex">
+            
+          </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
